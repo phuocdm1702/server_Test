@@ -31,7 +31,7 @@ public class NhanVienController {
     private ChucVuRepository CVRepository;
 
     @GetMapping("/hien-thi")
-    public List<NhanVienDTOGet> hienThi(@RequestParam(value = "page") Integer page) {
+    public List<NhanVienDTOGet> hienThi(@RequestParam(value = "page", defaultValue = "0") Integer page) {
         Pageable pageable = PageRequest.of(page, 5);
         return NVrepository.getAll(pageable).getContent();
     }
