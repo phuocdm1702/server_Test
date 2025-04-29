@@ -8,8 +8,24 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface NhanVienRepository extends JpaRepository<NhanVien, Integer> {
+
+    @Query("""
+            SELECT new com.example.j6_sof306_demau_1.dto.NhanVienDTOGet
+            (
+            nv.id,
+            nv.maNhanVien,
+            nv.hoTen,
+            nv.ngaySinh,
+            nv.gioiTinh,
+            nv.chucVu.maChucVu,
+            nv.chucVu.tenChucVu
+            )  FROM NhanVien nv
+            """)
+    List<NhanVienDTOGet> getAllData();
     @Query("""
             SELECT new com.example.j6_sof306_demau_1.dto.NhanVienDTOGet
             (
