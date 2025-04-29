@@ -30,6 +30,11 @@ public class NhanVienController {
     @Autowired
     private ChucVuRepository CVRepository;
 
+    @GetMapping("/test")
+    public String testMessage(){
+        return "đây là deploy";
+    }
+
     @GetMapping("/hien-thi")
     public List<NhanVienDTOGet> hienThi(@RequestParam(value = "page", defaultValue = "1") Integer page) {
         Pageable pageable = PageRequest.of(page, 5);
